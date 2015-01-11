@@ -1,0 +1,6 @@
+TODO
+
+1) Install the Android SDK.
+2) Finishe these instructions to get the app building: http://docs.phonegap.com/en/edge/guide_cli_index.md.html#The%20Command-Line%20Interface
+3) Get the app running in an emulator
+4) Get the app running natively on the tablet
