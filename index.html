@@ -1,12 +1,34 @@
 <html>
 <head>
 	<style>
-		body {color: red;}
+		body {
+			color: red;
+		}
+		div {
+			border: 1px solid black;
+			padding: 2px;
+			float: left;
+		}
+		.container {
+			width: 800px;
+			height: 600px;
+			position: fixed;
+		}
+		.summary {
+			width: 49%;
+			height: 49%;
+		}
 	</style>
-	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
 	<p>hello world</p>
+	<div class="container">
+		<!-- weapons, mech info, pilot info, armour damage, heat, internal damage, structure-->
+		<div class="summary">a</div>
+		<div class="summary">b<br/>b</div>
+	</div>
+
+	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
