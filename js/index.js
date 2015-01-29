@@ -1,5 +1,5 @@
 /* JS here */
 
 $(document).ready(function () {
-	console.log("hello world");
+	console.log(window.MechFactory.NewMech());
 });
