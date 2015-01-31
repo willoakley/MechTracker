@@ -5,128 +5,103 @@ window.MechFactory = {
 		return mech;
 	},
 
-	NewMech: function () {
+	getMechLocations: function (mechType) {
+		var mechTypeLocations = {
+			mech: ["head", "leftArm", "rightArm", "leftTorso", "centralTorso", "rightTorso", "leftLeg", "rightLeg"],
+			quadmech: ["head", "frontLeftLeg", "rearLeftLeg", "frontRightLeg", "rearRightLeg", "leftTorso", "centralTorso", "rightTorso"],
+			tank: ["front", "leftSide", "rightSide", "rear", "turret"]
+		};
+
+		return eval("mechTypeLocations." + mechType.toLowerCase()) || [];
+	},
+
+	newAvatarMech: function () {
 		return {
-			type: "Mech",
+			version: 1,
+			type: "mech",
 			clas: "Avatar",
 			designation: "AV1-O A",
-			techBase: "IS",
 			weight: 70,
 			move: {
 				walk: 3,
-				run: 6
+				run: 6,
 				/* calculate jump on the fly */
 			},
 			
 			pilot: {
 				name: "pilot 1",
-				hitsTaken: 0,
 				piloting: 4,
-				gunnery: 5
+				gunnery: 5,
 			},
 			
-			locations: {
-				H: {
-					name: "Head",
-					armour: {
-						front: 9,
-						rear: null,
-						internal: 3
-					},
-					
-					equipment: [
-						{ type: "Equipment", name: "Life support", canBeDamaged: true, criticalSlots: 2 },
-						{ type: "Equipment", name: "Sensors", canBeDamaged: true, criticalSlots: 2 },
-						{ type: "Equipment", name: "Cockpit", canBeDamaged: true, criticalSlots: 1 },
-					]
-				},
-				
-				LA: {
-					name: "Left Arm",
-					armour: {
-						front: 16,
-						rear: null,
-						internal: 11				
-					},
-					
-					equipment: [ /* TODO */ ]
-				},
-				
-				RA: {
-					name: "Right Arm",
-					armour: {
-						front: 16,
-						rear: null,
-						internal: 11
-					},
-					
-					equipment: [ /* TODO */ ]
-				},
-				
-				LT: {
-					name: "Left Torso",
-					armour: {
-						front: 22,
-						rear: 8,
-						internal: 15
-					},
-					
-					equipment: [ /* TODO */ ]
-				},
-				
-				RT: {
-					name: "Right Torso",
-					armour: {
-						front: 22,
-						rear: 8,
-						internal: 15
-					},
-					
-					equipment: [
-						{ type: "Equipment", name: "XL Fusion engine", canBeDamaged: true, criticalSlots: 3 },
-						{ type: "Equipment", name: "CASE", canBeDamaged: false, criticalSlots: 1 },
-						{ type: "Weapon", name: "SRM 6", canBeDamaged: true, criticalSlots: 2, stats: { facing: "Front", heat: 4, damage: "2/m", minRange: 0, shortRange: 3, mediumRange: 6, longRange: 9 } },
-						{ type: "Ammo", name: "AC/20", canBeDamaged: true, criticalSlots: 1, stats: { shots: 5 } },
-						{ type: "Ammo", name: "AC/20", canBeDamaged: true, criticalSlots: 1, stats: { shots: 5 } },
-						{ type: "Ammo", name: "AC/20", canBeDamaged: true, criticalSlots: 1, stats: { shots: 5 } }
-					]
-				},
-				
-				CT: {
-					name: "Central Torso",
-					armour: {
-						front: 30,
-						rear: 9,
-						internal: 22
-					},
-					
-					equipment: [ /* TODO */ ]
-				},
-				
-				LL: {
-					name: "Left Leg",
-					armour: {
-						front: 26,
-						rear: null,
-						internal: 15
-					},
-					
-					equipment: [ /* TODO */ ]
-				},
-				
-				RL: {
-					name: "Right Leg",
-					armour: {
-						front: 26,
-						rear: null,
-						internal: 15
-					},
-					
-					equipment: [ /* TODO */ ]
-				},
+			armour: {
+				head: { front: 9, rear: null, internal: 3 },
+				leftArm: { front: 16, rear: null, internal: 11 },
+				rightArm: { front: 16, rear: null, internal: 11 },
+				leftTorso: { front: 22, rear: 8, internal: 15 },
+				rightTorso: { front: 22, rear: 8, internal: 15 },
+				centralTorso: { front: 30, rear: 9, internal: 22 },
+				leftLeg: { front: 26, rear: null, internal: 15 },
+				rightLeg: { front: 26, rear: null, internal: 15 },
 			},
 			
-			heatSinkType: 2 /* double. count number on the fly */
+			equipment: {
+				head: [
+					{ name: "Life support", canBeDamaged: true, criticalSlots: 2 },
+					{ name: "Sensors", canBeDamaged: true, criticalSlots: 2 },
+					{ name: "Cockpit", canBeDamaged: true, criticalSlots: 1 },
+				],
+				leftArm: [ /* TODO */ ],
+				rightArm: [ /* TODO */ ],
+				leftTorso: [ /* TODO */ ],
+				rightTorso: [
+					{ type: "equipment", name: "XL Fusion engine", canBeDamaged: true, criticalSlots: 3 },
+					{ type: "equipment", name: "CASE", canBeDamaged: false, criticalSlots: 1 },
+				],
+				centralTorso: [ /* TODO */ ],
+				leftLeg: [ /* TODO */ ],
+				rightLeg: [ /* TODO */ ],
+			},
+
+			weapons: {
+				head: [ /* TODO */ ],
+				leftArm: [ /* TODO */ ],
+				rightArm: [ /* TODO */ ],
+				leftTorso: [ /* TODO */ ],
+				rightTorso: [
+					{ name: "SRM 6", criticalSlots: 2, facing: "Front", heat: 4, damage: "2/m", minRange: 0, shortRange: 3, mediumRange: 6, longRange: 9 },
+				],
+				centralTorso: [ /* TODO */ ],
+				leftLeg: [ /* TODO */ ],
+				rightLeg: [ /* TODO */ ],
+			},
+
+			ammo: {
+				head: [ /* TODO */ ],
+				leftArm: [ /* TODO */ ],
+				rightArm: [ /* TODO */ ],
+				leftTorso: [ /* TODO */ ],
+				rightTorso: [
+					{ name: "AC/20", criticalSlots: 1, shots: 5 },
+					{ name: "AC/20", criticalSlots: 1, shots: 5 },
+					{ name: "AC/20", criticalSlots: 1, shots: 5 },
+				],
+				centralTorso: [ /* TODO */ ],
+				leftLeg: [ /* TODO */ ],
+				rightLeg: [ /* TODO */ ],
+			},
+
+			heatSinkType: "single", /*or "double" */
+			heatSinks: {
+				head: [],
+				leftArm: [],
+				rightArm: [],
+				leftTorso: [],
+				rightTorso: [],
+				centralTorso: [],
+				leftLeg: [],
+				rightLeg: [],
+			},
 		};
 	}
 };
