@@ -46,49 +46,93 @@ window.MechFactory = {
 			},
 			
 			equipment: {
+				/* canBeDamaged: true - unless otherwise specified */
+				/* type: "equipment" - unless otherwise specified */
+
 				head: [
-					{ name: "Life support", canBeDamaged: true, criticalSlots: 2 },
-					{ name: "Sensors", canBeDamaged: true, criticalSlots: 2 },
-					{ name: "Cockpit", canBeDamaged: true, criticalSlots: 1 },
+					{ name: "Life support", criticalSlots: 2, type: "life support" },
+					{ name: "Sensors", criticalSlots: 2, type: "sensor" },
+					{ name: "Cockpit", criticalSlots: 1 },
 				],
-				leftArm: [ /* TODO */ ],
-				rightArm: [ /* TODO */ ],
-				leftTorso: [ /* TODO */ ],
+				leftArm: [
+					{ name: "Shoulder", criticalSlots: 1 },
+					{ name: "Upper Arm Actuator", criticalSlots: 1 },
+					{ name: "Lower Arm Actuator", criticalSlots: 1 },
+				],
+				rightArm: [
+					{ name: "Shoulder", criticalSlots: 1 },
+					{ name: "Upper Arm Actuator", criticalSlots: 1 },
+				],
+				leftTorso: [
+					{ name: "XL Fusion engine", criticalSlots: 3, type: "engine" },
+					{ name: "CASE", canBeDamaged: false, criticalSlots: 1 },
+				],
 				rightTorso: [
-					{ type: "equipment", name: "XL Fusion engine", canBeDamaged: true, criticalSlots: 3 },
-					{ type: "equipment", name: "CASE", canBeDamaged: false, criticalSlots: 1 },
+					{ name: "XL Fusion engine", criticalSlots: 3, type: "engine" },
+					{ name: "CASE", canBeDamaged: false, criticalSlots: 1 },
 				],
-				centralTorso: [ /* TODO */ ],
-				leftLeg: [ /* TODO */ ],
-				rightLeg: [ /* TODO */ ],
+				centralTorso: [
+					{ name: "XL Fusion engine", criticalSlots: 6, type: "engine" },
+					{ name: "Gyro", criticalSlots: 4, type: "gyro" },
+				],
+				leftLeg: [
+					{ name: "Hip", criticalSlots: 1 },
+					{ name: "Upper Leg Actuator", criticalSlots: 1 },
+					{ name: "Lower Leg Actuator", criticalSlots: 1 },
+					{ name: "Foot Actuator", criticalSlots: 1 },
+					{ name: "Jump jet", criticalSlots: 1, type: "jump jet" },
+					{ name: "Jump jet", criticalSlots: 1, type: "jump jet" },
+				],
+				rightLeg: [
+					{ name: "Hip", criticalSlots: 1 },
+					{ name: "Upper Leg Actuator", criticalSlots: 1 },
+					{ name: "Lower Leg Actuator", criticalSlots: 1 },
+					{ name: "Foot Actuator", criticalSlots: 1 },
+					{ name: "Jump jet", criticalSlots: 1, type: "jump jet" },
+					{ name: "Jump jet", criticalSlots: 1, type: "jump jet" },
+				],
 			},
 
 			weapons: {
-				head: [ /* TODO */ ],
-				leftArm: [ /* TODO */ ],
-				rightArm: [ /* TODO */ ],
-				leftTorso: [ /* TODO */ ],
-				rightTorso: [
-					{ name: "SRM 6", criticalSlots: 2, facing: "Front", heat: 4, damage: "2/m", minRange: 0, shortRange: 3, mediumRange: 6, longRange: 9 },
+				/* facing: "front" - unless otherwise specified */
+
+				head: [],
+				leftArm: [
+					{ name: "ER Large Laser", criticalSlots: 2, heat: 12, damage: "8 [DE]", minRange: 0, shortRange: 7, mediumRange: 14, longRange: 19 },
 				],
-				centralTorso: [ /* TODO */ ],
-				leftLeg: [ /* TODO */ ],
-				rightLeg: [ /* TODO */ ],
+				rightArm: [
+					{ name: "Autocannon/20", criticalSlots: 10, heat: 7, damage: "20 [DB,S]", minRange: 0, shortRange: 3, mediumRange: 6, longRange: 9 },
+				],
+				leftTorso: [
+					{ name: "SRM 6", criticalSlots: 2, heat: 4, damage: "2/m", minRange: 0, shortRange: 3, mediumRange: 6, longRange: 9 },
+				],
+				rightTorso: [
+					{ name: "SRM 6", criticalSlots: 2, heat: 4, damage: "2/m", minRange: 0, shortRange: 3, mediumRange: 6, longRange: 9 },
+				],
+				centralTorso: [
+					{ name: "Medium Laser", criticalSlots: 1, heat: 3, damage: "5 [DE]", minRange: 0, shortRange: 3, mediumRange: 6, longRange: 9 },
+					{ name: "Medium Laser", criticalSlots: 1, heat: 3, damage: "5 [DE]", minRange: 0, shortRange: 3, mediumRange: 6, longRange: 9 },
+				],
+				leftLeg: [],
+				rightLeg: [],
 			},
 
 			ammo: {
-				head: [ /* TODO */ ],
-				leftArm: [ /* TODO */ ],
-				rightArm: [ /* TODO */ ],
-				leftTorso: [ /* TODO */ ],
-				rightTorso: [
-					{ name: "AC/20", criticalSlots: 1, shots: 5 },
-					{ name: "AC/20", criticalSlots: 1, shots: 5 },
-					{ name: "AC/20", criticalSlots: 1, shots: 5 },
+				head: [],
+				leftArm: [],
+				rightArm: [],
+				leftTorso: [
+					{ name: "SRM 6", shots: 15 },
+					{ name: "SRM 6", shots: 15 },
 				],
-				centralTorso: [ /* TODO */ ],
-				leftLeg: [ /* TODO */ ],
-				rightLeg: [ /* TODO */ ],
+				rightTorso: [
+					{ name: "AC/20", shots: 5 },
+					{ name: "AC/20", shots: 5 },
+					{ name: "AC/20", shots: 5 },
+				],
+				centralTorso: [],
+				leftLeg: [],
+				rightLeg: [],
 			},
 
 			heatSinkType: "single", /*or "double" */
