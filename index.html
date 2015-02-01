@@ -1,35 +1,83 @@
 <html>
 <head>
 	<style>
-		body {
-			color: red;
-		}
-		div {
-			border: 1px solid black;
-			padding: 2px;
-			float: left;
-		}
-		.container {
-			width: 800px;
-			height: 600px;
-			position: fixed;
-		}
-		.summary {
-			width: 49%;
-			height: 49%;
-		}
+	label.error{
+		color: red;
+	}
+
+	div {
+		border: 1px solid black;
+	}
 	</style>
 </head>
 <body>
-	<p>hello world</p>
-	<div class="container">
-		<div class="summary">a</div>
-		<div class="summary">b<br/>b</div>
+	<div class="section main">
+		<h2>Mech Recordsheet Tracker</h2>
+
+		<ul class="unit-list"></ul>
+
+		<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="js/handlebars-v2.0.0.min.js"></script>
+		<script type="text/javascript" src="js/linq.min.js"></script><!-- http://linqjs.codeplex.com/documentation -->
+		<script type="text/javascript" src="js/mechFactory.js"></script>
+		<script type="text/javascript" src="mechData/avatar.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
 	</div>
 
-	<script type="text/javascript" src="js/mech.js"></script>
-	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
-	<script type="text/javascript" src="js/linq.min.js"></script><!-- http://linqjs.codeplex.com/documentation -->
-	<script type="text/javascript" src="js/index.js"></script>
+	<script id="noUnitsTemplate" type="text/x-handlebars-template">
+		<li class="no-units-added">
+			<div>
+				<p>Add units using the form below.</p>
+			</div>
+		</li>
+	</script>
+
+	<script id="unitSummaryTemplate" type="text/x-handlebars-template">
+		{{#each mechs}}
+		<div>
+			<li class="unit">
+				<p>Mech: {{clas}} {{designation}}. Piloted by {{pilot.name}} P{{pilot.piloting}} G{{pilot.gunnery}}</p>
+			</li>
+		</div>
+		{{/each}}
+	</script>
+
+	<script id="addUnitTemplate" type="text/x-handlebars-template">
+		<li class="add-unit">
+			<div>
+				<form id="addUnit">
+					<label for="unitType">Unit Type:</label>
+					<select name="unitType">
+						<option value="">- select type -</option>
+						<option value="mech">Mech</option>
+						<option value="mech">Vehicle</option>
+					</select>
+					<br />
+					<label for="unitClass">Class:</label>
+					<select name="unitClass">
+						<option value="">- select class -</option>
+						<option value="Avatar">Avatar</option>
+					</select>
+					<br />
+					<label for="unitDesignation">Designation</label>
+					<select name="unitDesignation">
+						<option value="">- select designation -</option>
+						<option value="AV1-O A">AV1-O A</option>
+					</select>
+					<hr />
+					<label for="pilotName">Pilot Name:</label>
+					<input type="text" name="pilotName" placeholder="Name"/>
+					<br />
+					<label for="piloting">Piloting:</label>
+					<select name="piloting"><option value="">- select -</option><option>6</option><option>5</option><option>4</option><option>3</option></select>
+					<label for="gunnery">Gunnery:</label>
+					<select name="gunnery"><option value="">- select -</option><option>6</option><option>5</option><option>4</option><option>3</option></select>
+					<br />
+					<input type="button" onclick="addUnit(document.forms.addUnit)" value="Add unit">
+				</form>
+			</div>
+		</li>
+	</script>
 </body>
 </html>
